@@ -1,4 +1,17 @@
-let state;
+function createStore(){
+  let state;
+
+  function dispatch(action){
+    state = reducer(state, action);
+    render();
+  };
+
+  function getState(){
+    return state;
+  }
+
+  return { dispatch };
+}
 
 function reducer(state = { count: 0 }, action) {
   switch (action.type) {
@@ -8,11 +21,6 @@ function reducer(state = { count: 0 }, action) {
     default:
       return state;
   }
-};
-
-function dispatch(action){
-  state = reducer(state, action);
-  render();
 };
 
 function render() {
